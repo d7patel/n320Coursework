@@ -11,8 +11,15 @@ class Drop {
         circle(this.x, this.y, 5);
     }
 }
-
-var d = new Drop();
+class Rain {
+    constructor(){
+        this.drops = [];
+    }
+    createDrop(){
+        //stub
+        //TODO: complete
+    }
+}
 
 //run ones before the app starts
 function setup(){
@@ -21,15 +28,4 @@ function setup(){
 // run 60 times a second, or so
 function draw(){
     d.update();
-}
-
-class Rain {
-    constructor(){
-        this.drops = [];
-    }
-    createDrop(){
-        //stub
-        //TODO: complete
-
-    }
 }
