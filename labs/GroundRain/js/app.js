@@ -80,7 +80,7 @@ var rainManager = new RainManager();
 
 //run ones before the app starts
 function setup(){
-    createCanvas(400,400);
+    createCanvas(400,300);
 }
 
 // run 60 times a second, or so
