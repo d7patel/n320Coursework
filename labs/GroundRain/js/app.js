@@ -6,13 +6,8 @@ class Drop {
         this.y = 0;
     }
     update(){
-        //set the speed of water drop and ones they touch the ground, it will stop
-        if(this.y<=320){
-            this.y++;
-        }
-        else{
-            this.y==320;
-        }
+        //set the speed of water drop
+        this.y++;
         fill(0,0,200);
         circle(this.x, this.y, 5);
     }
@@ -32,17 +27,6 @@ class RainManager {
     update(){
         for(var i=0; i< this.drops.length; i++){
             this.drops[i].update();
-            //Check if water drop touch the ground. When it's touch to the ground,
-            //start the count whater drop that touch the ground
-            //every 10 drop touch, ground color will change. And count set back to 0
-            if(this.drops[i].y==255){
-                ground.hit++;
-                if (ground.hit == 10){
-                    ground.r=ground.r-20;
-                    ground.g=ground.g-20;
-                    ground.hit = 0;
-                }
-            }
         }
     }
 }
@@ -59,9 +43,9 @@ class Ground{
     }
     //update - make the ground
     update(){
-        strokeWeight(0);
-        fill (255);
-        ellipse(200,270,500,110);
+        //strokeWeight(0);
+        //fill (255);
+        //ellipse(200,270,500,110);
         fill(this.r,this.g,this.b);
         stroke(0);
         strokeWeight(2);
@@ -72,6 +56,22 @@ class Ground{
     }
     //drop hit - called when a rain drop gets low enough (how do you inform it?)
         //change the color for every ten rain drops hit
+    hitGround(){
+        //Check if water drop touch the ground. When it's touch to the ground,
+        //start the count whater drop that touch the ground
+        //every 10 drop touch, ground color will change. And count set back to 0
+        for(var i=0; i< rainManager.drops.length; i++){
+            if(rainManager.drops[i].y==270){
+                this.hit++;
+                rainManager.drops.splice(i,1);
+                if (this.hit == 10){
+                    this.r=this.r-20;
+                    this.g=this.g-20;
+                    this.hit = 0;
+                }
+            }
+        }
+    }
 }
 
 //global variables
@@ -80,7 +80,7 @@ var rainManager = new RainManager();
 
 //run ones before the app starts
 function setup(){
-    createCanvas(400,300);
+    createCanvas(400,400);
 }
 
 // run 60 times a second, or so
@@ -94,4 +94,5 @@ function draw(){
     }
     rainManager.update();
     ground.update();
+    ground.hitGround();
 }
