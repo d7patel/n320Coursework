@@ -3,17 +3,18 @@ var Place = document.querySelector("#place");
 var BoxTemplate = document.querySelector("#boxTemplate");
 
  for(let i=0; i<6; i++){
- let newCard = document.createElement("div");
+ let sixBox = document.createElement("div");
   
-    newCard.classList.add("boxes");
-    newCard.style.animationDelay = i*0.3 + "s";
+    sixBox.classList.add("boxes");
+    sixBox.style.animationDelay = i*0.3 + "s";
     
     //set up connections and events
-    newCard.addEventListener("mouseover", onCardOver);
-    newCard.addEventListener("mouseout", onCardOut);
+    sixBox.addEventListener("mouseover", onCardOver);
+    sixBox.addEventListener("mouseout", onCardOut);
+    sixBox.addEventListener("click", onRemoveBox);
     
     //put onto the page
-    Place.appendChild(newCard);
+    Place.appendChild(sixBox);
  }
 
 function onCardOver(event) {
@@ -26,4 +27,9 @@ function onCardOver(event) {
 function onCardOut(event) {
   event.target.classList.add("cardOut");
   event.target.classList.remove("cardOver");
+}
+
+function onRemoveBox(event) {
+  event.target.classList.add("cardOut");
+  event.target.classList.remove("boxes");
 }
