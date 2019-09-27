@@ -1,0 +1,125 @@
+
+
+#title{
+  font-size: 40px;
+  color: rgb(22, 18, 82);
+  animation: cardBuildIn .7s;
+  animation-fill-mode: both;
+}
+
+#box{
+  
+  height: 100px;
+  width: 100%;
+  background: rgb(16, 9, 85);
+  animation: cardBuildIn .7s;
+  animation-fill-mode: both;
+}
+
+#box1{
+  position: absolute;
+  height: 130px;
+  width: 200px;
+  background: rgb(162, 36, 147);
+  top: 200px;
+  left: 50px;
+  animation: cardBuildIn .7s;
+  animation-fill-mode: both;
+}
+
+#box2{
+  position: absolute;
+  top: 200px;
+  left: 300px;
+  height: 130px;
+  width: 200px;
+  background: rgb(162, 36, 147);
+  animation: cardBuildIn .7s;
+  animation-fill-mode: both;
+}
+
+#box3{
+  position: absolute;
+  top: 200px;
+  left: 550px;
+  height: 130px;
+  width: 200px;
+  background: rgb(162, 36, 147);
+  animation: cardBuildIn .7s;
+  animation-fill-mode: both;
+}
+
+#box4{
+  position: absolute;
+  top: 380px;
+  left: 50px;
+  height: 130px;
+  width: 200px;
+  background: rgb(162, 36, 147);
+  animation: cardBuildIn .7s;
+  animation-fill-mode: both;
+}
+
+#box5{
+  position: absolute;
+  top: 380px;
+  left: 300px;
+  height: 130px;
+  width: 200px;
+  background: rgb(162, 36, 147);
+  animation: cardBuildIn .7s;
+  animation-fill-mode: both;
+}
+
+#box6{
+  position: absolute;
+  top: 380px;
+  left: 550px;
+  height: 130px;
+  width: 200px;
+  background: rgb(162, 36, 147);
+  animation: cardBuildIn .7s;
+  animation-fill-mode: both;
+}
+
+.cardOver {
+  animation: cardOverAnim .7s;
+  animation-fill-mode: both;
+}
+
+.cardOut {
+  animation: cardOutAnim .7s;
+  animation-fill-mode: both;
+}
+
+@keyframes cardBuildIn {
+  from {
+    opacity: 0;
+    transform: scale(.2) rotateZ(180deg) rotateX(180deg);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cardOverAnim {
+  to {
+    opacity: 1;
+    background-color: #FF0;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes cardOutAnim {
+  from {
+    opacity: 1;
+    transform: scale(1.2);
+    background-color: #FFFF00;
+  }
+  
+  to {
+    opacity: 1;
+    transform: scale(1);
+    background-color: #FFF;
+  }
+}
