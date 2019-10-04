@@ -9,11 +9,15 @@
 <body>
     <div id="app">
         <student-card   v-bind:student="currentStudent"
-                        v-bind:bisactive="bcardActive" 
                         v-bind:isactive="cardActive"></student-card>
+        <student-back   v-bind:student="currentStudent"
+                        v-bind:bisactive="bcardActive"></student-back>
+        <student-play   v-bind:student="currentStudent" 
+                        v-bind:pisactive="pcardActive"></student-play>
 
         <div class="arrow" v-on:click="arrowClicked"> > </div>
         <div class="backArrow" v-on:click="backArrowClicked"> < </div>
+        <div class="playArrow" v-on:click="playArrowClicked"> Play </div>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>

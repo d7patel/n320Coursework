@@ -1,7 +1,14 @@
 Vue.component("student-card", {
-  props: [ "student","bisactive", "isactive" ],
-  template: "<div class='student' v-bind:class='{cardActive:isactive, cardOut:!isactive }'>{{ student.name }} : {{ student.skill }}</div>",
-  template: "<div class='student' v-bind:class='{bcardActive:bisactive, bcardOut:!bisactive }'>{{ student.name }} : {{ student.skill }}</div>"
+  props: [ "student", "isactive" ],
+  template: "<div class='student' v-bind:class='{cardActive:isactive, cardOut:!isactive }'>{{ student.name }} : {{ student.skill }}</div>"
+})
+Vue.component("student-back", {
+    props: [ "student","bisactive" ],
+    template: "<div class='student' v-bind:class='{bcardActive:bisactive, bcardOut:!bisactive }'>{{ student.name }} : {{ student.skill }}</div>"
+})
+Vue.component("student-play", {
+    props: [ "student","pisactive" ],
+    template: "<div class='student' v-bind:class='{pcardActive:pisactive, pcardOut:!pisactive }'>{{ student.name }} : {{ student.skill }} : {{student.joy}}</div>"
 })
 
 var app = new Vue({
@@ -15,7 +22,8 @@ var app = new Vue({
         currentStudent: { name: "Sienna", skill: 2, joy: 0 },
         curStudentId: 0,
         cardActive: true,
-        bcardActive: true
+        bcardActive: true,
+        pcardActive: true
     },
     methods: {
 
@@ -65,7 +73,26 @@ var app = new Vue({
                 //animation trigger
                 this.bcardActive = !this.bcardActive;
             }, 300);
-        }
-        
+        },
+        playArrowClicked: function() {
+         
+            this.pcardActive = !this.pcardActive;
+            setTimeout(()=>{
+
+                //modify the joy of the current student
+                //before moving onward:
+                this.currentStudent.joy ++;
+
+                //iteration code
+                this.curStudentId ++;
+                this.currentStudent = this.students[this.curStudentId];
+
+                if(this.curStudentId >= this.students.length-1) {
+                    this.curStudentId = -1;
+                }
+                //animation trigger
+                this.pcardActive = !this.pcardActive;
+            }, 1000);
+        }   
     }
 })

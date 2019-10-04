@@ -6,6 +6,7 @@ body {
   width: 100px;
   height: 100px;
   padding: 3px;
+  margin: 10px;
   background-color: #eee;
   color: #ef4b4b;
 }
@@ -24,6 +25,17 @@ body {
   cursor: pointer;
   color: #fff;
   width: 15px;
+  height: 15px;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  background: #7ecfc0;
+}
+
+.playArrow{
+  cursor: pointer;
+  color: #fff;
+  width: 30px;
   height: 15px;
   padding: 5px;
   margin: 5px;
@@ -51,5 +63,17 @@ body {
 .bcardOut {
   transition: transform .3s ease, opacity .3s ease;
   transform: rotate(-45deg);
+  opacity: 0;
+}
+
+.pcardActive {
+  transition: transform 1s ease, opacity 1s ease;
+  transform: rotateY(0deg);
+  opacity: 1;
+}
+
+.pcardOut {
+  transition: transform 1s ease, opacity 1s ease;
+  transform: rotateY(90deg);
   opacity: 0;
 }
