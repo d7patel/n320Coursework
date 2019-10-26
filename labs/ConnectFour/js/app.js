@@ -36,7 +36,7 @@ var app = new Vue({
             }
             
         },
-        checkWin: function(row, col, moveRow) {
+        checkWin: function(playerTurn, col, moveRow) {
             //loop through all columns to check
             
             //if (this.grid[moveRow][col].value == this.grid[moveRow][col+1].value){
@@ -48,20 +48,47 @@ var app = new Vue({
             console.log(moveRow);
             //console.log(row);
             console.log(col);
-            console.log(this.grid[moveRow][col]);
-
-            if( this.grid[moveRow][col] == this.grid[moveRow][col+1]==this.grid[moveRow][col+2]==this.grid[moveRow][col+3]){
-                console.log("Win row");
+            //console.log(this.grid[col][row]);
+            if(this.grid[moveRow][3] == 1 || this.grid[moveRow][3] == 2){
+                if( this.grid[moveRow][0] == this.grid[moveRow][1] && 
+                    this.grid[moveRow][1]==this.grid[moveRow][2] &&
+                    this.grid[moveRow][2]==this.grid[moveRow][3]){
+                        console.log("Win row1");
+                        console.log(playerTurn);
+                }
+                else if( this.grid[moveRow][1] == this.grid[moveRow][2] && 
+                    this.grid[moveRow][2]==this.grid[moveRow][3] &&
+                    this.grid[moveRow][3]==this.grid[moveRow][4]){
+                        console.log("Win row2");
+                }
+                else if( this.grid[moveRow][2] == this.grid[moveRow][3] && 
+                    this.grid[moveRow][3]==this.grid[moveRow][4] &&
+                    this.grid[moveRow][4]==this.grid[moveRow][5]){
+                        console.log("Win row3");
+                }
+                else if( this.grid[moveRow][3] == this.grid[moveRow][4] && 
+                    this.grid[moveRow][4]==this.grid[moveRow][5] &&
+                    this.grid[moveRow][5]==this.grid[moveRow][6]){
+                        console.log("Win row4");
+                }
             }
-
-            if( this.grid[moveRow][col] == this.grid[moveRow+1][col]==this.grid[moveRow+2][col]==this.grid[moveRow][col]){
-                console.log("Win col");
+            if(this.grid[3][col] == 1 || this.grid[3][col] == 2){
+                if( this.grid[0][col] == this.grid[1][col] && 
+                    this.grid[1][col]==this.grid[2][col] &&
+                    this.grid[2][col]==this.grid[3][col]){
+                    console.log("Win col1");
+                }
+                else if( this.grid[1][col] == this.grid[2][col] && 
+                    this.grid[2][col]==this.grid[3][col] &&
+                    this.grid[3][col]==this.grid[4][col]){
+                    console.log("Win col2");
+                }
+                else if( this.grid[2][col] == this.grid[3][col] && 
+                    this.grid[3][col]==this.grid[4][col] &&
+                    this.grid[4][col]==this.grid[5][col]){
+                    console.log("Win col3");
+                }  
             }
-
-            if( this.grid[moveRow][col] == this.grid[moveRow+1][col+1]==this.grid[moveRow+2][col+2]==this.grid[moveRow+3][col+3]){
-                console.log("check");
-            }
-            //if win found, set over to true
         },
         lowestMove: function(col) {
             //start at the bottom of a col, loop upwards

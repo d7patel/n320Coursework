@@ -1,6 +1,6 @@
 
 var Place = document.querySelector("#place");
-var BoxTemplate = document.querySelector("#boxTemplate");
+var BoxTemplate = document.querySelector("#boxTemplanpte");
 
  for(let i=0; i<6; i++){
  let sixBox = document.createElement("div");
