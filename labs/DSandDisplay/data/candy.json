@@ -11,13 +11,13 @@
                 "wasabi", "white", "cherry blossom", "dark chocolate", "milk chocolate"
             ]
         },
-        { "name": "Peanut Butter", "rating": "bad", "chocolate": false, "deliciousness": 60 },
+        { "name": "Peanut Butter", "rating": "bad", "chocolate": false, "deliciousness": 30 },
         { "name": "Licorice", "rating": "terrible", "chocolate": false, "deliciousness": 20 },
         { "name": "Kit kat", "rating": "good", "chocolate": true, "deliciousness": 70 },
-        { "name": "Ferrero Rocher", "rating": "great", "chocolate": true, "deliciousness": 89 },
+        { "name": "Ferrero Rocher", "rating": "great", "chocolate": true, "deliciousness": 92 },
         { "name": "Peanut Butter", "rating": "bed", "chocolate": false, "deliciousness": 20 },
-        { "name": "Apple","type": "fruit", "rating": "good", "deliciousness": 75 },
-        { "name": "Avocados","type": "fruit", "rating": "good", "chocolate": true, "deliciousness": 70 },
-        { "name": "Orange", "rating": "good", "chocolate": true, "deliciousness": 70 }
+        { "name": "Apple", "rating": "good","chocolate": false, "deliciousness": 65 },
+        { "name": "Avocados", "rating": "good", "chocolate": false, "deliciousness": 75 },
+        { "name": "Orange", "rating": "good", "chocolate": false, "deliciousness": 70 }
     ]
 }
