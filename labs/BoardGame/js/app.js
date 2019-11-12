@@ -1,67 +1,102 @@
-
-var Place1 = document.querySelector("#place1");
-var Place2 = document.querySelector("#place2");
-var Place3 = document.querySelector("#place3");
-
- for(let i=0; i<3; i++){
- let threeBox = document.createElement("div");
-  
-    threeBox.classList.add("boxes");
-
-    threeBox.style.animationDelay = i*0.1 + "s";
-    
-    //set up connections and events
-    threeBox.addEventListener("mouseover", onCardOver);
-    threeBox.addEventListener("mouseout", onCardOut);
-    threeBox.addEventListener("click", onRemoveBox);
-    
-    //put onto the page
-    Place1.appendChild(threeBox);
- }
-
- for(let i=0; i<3; i++){
-  let threeBox = document.createElement("div");
+new Vue ({
+  el: '#app',
+  data: {
+  	playerHealth: 100,
+  	monsterHealth: 100,
+  	playGame: true,
    
-    threeBox.classList.add("boxes");
-    threeBox.style.animationDelay = i*0.1 + "s";
-     
-     //set up connections and events
-     threeBox.addEventListener("mouseover", onCardOver);
-     threeBox.addEventListener("mouseout", onCardOut);
-     threeBox.addEventListener("click", onRemoveBox);
-     
-     //put onto the page
-     Place2.appendChild(threeBox);
-  }
-  for(let i=0; i<3; i++){
-    let threeBox = document.createElement("div");
-     
-      threeBox.classList.add("boxes");
-      threeBox.style.animationDelay = i*0.1 + "s";
-       
-       //set up connections and events
-       threeBox.addEventListener("mouseover", onCardOver);
-       threeBox.addEventListener("mouseout", onCardOut);
-       threeBox.addEventListener("click", onRemoveBox);
-       
-       //put onto the page
-       Place3.appendChild(threeBox);
+    player: '',
+    monster: '',
+    damage: ''
+  },
+  methods :{
+  
+    startGame : function (){
+      this.playGame = true;
+      this.damage = 0;
+  		this.playerHealth = 100;
+  		this.monsterHealth = 100;
+      
+    },
+    fight : function(){
+      var damage = this.claculateDamage(5, 10);
+      this.monsterHealth -= damage;
+      this.player = damage;
+      if (this.checkWin()) {
+        return;
+      }
+      this.monsterAttacks();
+      var totalDamage = this.player - this.monster;
+      this.damage = totalDamage;
+    },
+    
+    powerAttack : function(){
+      var damage = this.claculateDamage(20, 40);
+      this.monsterHealth -= damage;
+      this.player = damage; 
+      if (this.checkWin()) {
+        return;
+      }
+      this.monsterAttacks();
+      var totalDamage = this.player - this.monster;
+      this.damage = totalDamage;
+    },
+    
+    powerUp : function() {
+      if (this.playerHealth <= 80) {
+        this.playerHealth += 20;  
+      }
+      else {
+        this.playerHealth = 100;
+      }
+      
+      this.monsterAttacks();  
+  	  var totalDamage = 20 - this.monster;
+      this.damage = totalDamage;
+    },
+    
+    giveUp : function(){
+      this.playGame = true;
+  	  this.playerHealth = 0;	
+      this.damage = 0;
+    },
+    
+    monsterAttacks: function() {
+      var damage = this.claculateDamage(10, 15);
+      this.playerHealth -= damage;
+      this.checkWin();
+      this.monster = damage;
+    },
+    
+    claculateDamage: function(min, max) {
+      return Math.max(Math.floor(Math.random() * max) + 1, min);
+    },
+
+    checkWin: function() {
+      if (this.monsterHealth <= 0) {
+        if (confirm('You won!!!   start a new Game???')) {
+          this.startGame();
+        }
+        else{
+          this.playGame = false;
+          this.monsterHealth = 0;
+          this.damage = 0;
+        }
+        return true;
+      } 
+      else if (this.playerHealth <= 0) {
+        if (confirm('You lost!!!   start a new Game???')) {
+          this.startGame();
+        } 
+        else{
+          this.playGame = false;
+          this.playerHealth = 0;
+          this.damage = 0;
+        }
+        return true;
+      }
+      return false;
     }
 
-function onCardOver(event) {
-  
-  event.target.classList.add("cardOver");
-  event.target.classList.remove("cardOut");
-  event.target.style.animationDelay = "0s";
-}
-
-function onCardOut(event) {
-  event.target.classList.add("cardOut");
-  event.target.classList.remove("cardOver");
-}
-
-function onRemoveBox(event) {
-  event.target.classList.add("cardOut");
-  event.target.classList.remove("boxes");
-  
-}
+  }
+});
