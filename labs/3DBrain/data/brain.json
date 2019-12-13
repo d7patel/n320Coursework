@@ -1,0 +1,10 @@
+{
+    "brain":[
+        {"type":"frontalLobe", "info": "Speaking" , "asset": "frontalLobe.jpg"},
+        {"type":"temporalLobe", "info": "Hearing" , "asset": "temporalLobe.jpg"},
+        {"type":"parietalLobe", "info": "Touch" , "asset": "parietalLobe.jpg"},
+        {"type":"occipitalLobe", "info": "Vision" , "asset": "occipitalLobe.jpg"},
+        {"type":"cerebellum", "info": "Balance" , "asset": "cerebellum.jpg"},
+        {"type":"brainStem", "info": "Breathing" , "asset": "brainStem.jpeg"}
+    ]
+}

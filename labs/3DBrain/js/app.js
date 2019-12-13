@@ -1,59 +1,79 @@
-var canvas = document.getElementById("renderCanvas"); // Get the canvas element 
-var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
-var camera;
+var canvas = document.getElementById("renderCanvas");
 
-var sphere, light, blueMat, sphere2;
-var selectedMesh = null;
-
-var scene = createScene(); //Call the createScene function
-
-function createScene() {
-
-  // Create the scene space
-  var scene = new BABYLON.Scene(engine);
-
-  var radius = 3;
-  var deltaTheta = 0;
-  var path = [];
-for(var theta = 0; theta < 2 * Math.PI; theta +=deltaTheta ) {
-    path.push(new BABYLON.Vector3(radius * Math.cos(theta), radius * Math.sin(theta), 0)); }
+var selectedButton = document.querySelectorAll(".parts");
+var infoBox = document.getElementById("infoBox");
+var camera, scene, data, selectedType;
 
 
-  // Add a camera to the scene and attach it to the canvas
-  camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 4, 4, BABYLON.Vector3.Zero(), scene);
-  camera.attachControl(canvas, true);
-  
-  // Add lights to the scene
-  var myLight = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0, -0.5, 1.0), scene);
+//application setup stuff
+fetch("data/brain.json",{ method: 'get' })
+    .then(response => response.json())
+    .then((jsonData) => {
+        data = jsonData;
+        //console.log(data);
 
-  // Add and manipulate meshes in the scene
-  //sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: .5}, scene);
-    
-  var curve = BABYLON.Curve3.Create.CURVETYPE(parameters);
-  return scene;
-};
+        data.brain.forEach((piece, idx) => {
 
+            
+            // var p = BABYLON.SceneLoader.ImportMesh(
+            //     "","./models/house/", piece.asset, scene,
+            //     (meshes) => {
+            //         var containerNode = new BABYLON.TransformNode("root");
+            //         piece.asset = containerNode;
+            //         piece.asset.dataID = idx;
 
-// Register a render loop to repeatedly render the scene
-engine.runRenderLoop(function () { 
-  
-  //sphere.rotate(BABYLON.Axis.Y, .01, BABYLON.Space.WORLD);
-  scene.render();
-});
+            //         meshes.forEach((mesh) => {
+            //             mesh.parent = containerNode;
+            //         })
+            //     }
+            // );
+        })
+    })
 
+//setup engine stuff
+var engine = new BABYLON.Engine(canvas, true);
 
-function checkUp() {
-    console.log(selectedMesh.rotation.y)
+scene = createScene();
+engine.runRenderLoop(function(){
+    scene.render();
+})
+
+function createScene(){
+    var scene = new BABYLON.Scene(engine);
+
+    // add a camera into the scene
+    camera = new BABYLON.ArcRotateCamera(
+        "c", Math.PI/4, Math.PI/4, 10, BABYLON.Vector3.Zero(), scene);
+
+    var light = new BABYLON.DirectionalLight(
+        "1", new BABYLON.Vector3(0, -.5, 0.2), scene);
+
+    //Loaded the brain model
+    BABYLON.SceneLoader.Append("./models/brain/","brain-simple-mesh.obj", scene, function (meshes){
+        try {
+            var model = scene.meshes[0]
+            scene.createDefaultCameraOrLight(true, true, true);        
+            model.rotation.y = MATH.PI /2
+        } catch (err) {
+            console.log('error!', err)
+        }
+    });
+
+    return scene;
 }
+//end setup engine stuff
 
-window.addEventListener("keydown", (event) => {
+//application functions
+function bParts(event){
+    //remember what was selected
+    selectedType = event.target.getAttribute("data-type");
 
+    //reset selected class
+    selectedButton.forEach((button) => { button.classList.remove("selected") });
 
+    //add the selected class to the item that was clicked
+    event.target.classList.add("selected");
 
-})
+    //event.target.innerHTML ="Hi";
 
-window.addEventListener("click", function () {
-    // We try to pick an object
-   
-})
-
+}
