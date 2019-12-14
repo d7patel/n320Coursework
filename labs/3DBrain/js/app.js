@@ -67,6 +67,8 @@ function createScene(){
 
 //application functions
 function fParts(event){
+    soundElements[0].currentTime = 0;
+
     //remember what was selected
     selectedType = event.target.getAttribute("data-type");
 
@@ -90,6 +92,8 @@ function fParts(event){
 }
 
 function tParts(event){
+    soundElements[1].currentTime = 0;
+
     //remember what was selected
     selectedType = event.target.getAttribute("data-type");
 
@@ -113,6 +117,8 @@ function tParts(event){
 }
 
 function pParts(event){
+    soundElements[2].currentTime = 0;
+
     //remember what was selected
     selectedType = event.target.getAttribute("data-type");
 
@@ -135,6 +141,8 @@ function pParts(event){
 }
 
 function oParts(event){
+    soundElements[3].currentTime = 0;
+
     //remember what was selected
     selectedType = event.target.getAttribute("data-type");
 
@@ -157,6 +165,8 @@ function oParts(event){
 }
 
 function cParts(event){
+    soundElements[4].currentTime = 0;
+
     //remember what was selected
     selectedType = event.target.getAttribute("data-type");
 
@@ -179,6 +189,8 @@ function cParts(event){
 }
 
 function bParts(event){
+    soundElements[5].currentTime = 0;
+
     //remember what was selected
     selectedType = event.target.getAttribute("data-type");
 
