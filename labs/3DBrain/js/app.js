@@ -199,3 +199,12 @@ function bParts(event){
     soundElements[4].pause();
     soundElements[3].pause();
 }
+
+function stop(event){
+    soundElements[0].pause();
+    soundElements[1].pause();
+    soundElements[2].pause();
+    soundElements[4].pause();
+    soundElements[3].pause();
+    soundElements[5].pause();
+}
