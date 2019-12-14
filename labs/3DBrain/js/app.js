@@ -7,12 +7,12 @@ var camera, scene, data, selectedType;
 
 //added the JSON file here
 let brain =`[
-    {"type":"Frontal Lobe", "info": "Speaking" , "asset": "frontalLobe.jpg"},
-    {"type":"Temporal Lobe", "info": "Hearing" , "asset": "temporalLobe.jpg"},
-    {"type":"Parietal Lobe", "info": "Touch" , "asset": "parietalLobe.jpg"},
-    {"type":"Occipital Lobe", "info": "Vision" , "asset": "occipitalLobe.jpg"},
-    {"type":"Cerebellum", "info": "Balance" , "asset": "cerebellum.jpg"},
-    {"type":"Brain Stem", "info": "Breathing" , "asset": "brainStem.jpeg"}
+    {"type":"Frontal Lobe", "info": "The frontal lobe is the part of the brain that controls important cognitive skills in humans, such as emotional expression, problem solving, memory, language, judgment, and sexual behaviors." , "asset": "frontalLobe.jpg"},
+    {"type":"Temporal Lobe", "info": "The temporal lobe is involved in primary auditory perception, such as hearing, and holds the primary auditory cortex. The primary auditory cortex receives sensory information from the ears and secondary areas process the information into meaningful units such as speech and words." , "asset": "temporalLobe.jpg"},
+    {"type":"Parietal Lobe", "info": "The parietal lobe is vital for sensory perception and integration, including the management of taste, hearing, sight, touch, and smell. It is home to the brain's primary sensory area, a region where the brain interprets input from other areas of the body." , "asset": "parietalLobe.jpg"},
+    {"type":"Occipital Lobe", "info": "The occipital lobe is the visual processing center of the mammalian brain containing most of the anatomical region of the visual cortex. " , "asset": "occipitalLobe.jpg"},
+    {"type":"Cerebellum", "info": "The cerebellum receives information from the sensory systems, the spinal cord, and other parts of the brain and then regulates motor movements. The cerebellum coordinates voluntary movements such as posture, balance, coordination, and speech, resulting in smooth and balanced muscular activity." , "asset": "cerebellum.jpg"},
+    {"type":"Brain Stem", "info": "The brain stem controls the flow of messages between the brain and the rest of the body, and it also controls basic body functions such as breathing, swallowing, heart rate, blood pressure, consciousness, and whether one is awake or sleepy." , "asset": "brainStem.jpeg"}
 ]`
 
 //setup engine stuff
@@ -34,16 +34,23 @@ function createScene(){
         "1", new BABYLON.Vector3(0, -.5, 0.2), scene);
 
     //Loaded the brain model
-    BABYLON.SceneLoader.Append("./models/brain/","brain-simple-mesh.obj", scene, function (meshes){
+    var brain3D = BABYLON.SceneLoader.Append("./models/brain/","brain-simple-mesh.obj", scene, function (meshes){
         try {
             var model = scene.meshes[0]
             scene.createDefaultCameraOrLight(true, true, true);        
-            model.rotation.y = MATH.PI /2
+            model.rotation.y = MATH.PI /2     
+
         } catch (err) {
             console.log('error!', err)
-        }
-    });
+        }   
 
+        // //keep rotate 3D brain
+        scene.registerBeforeRender(function () {
+            model.rotation.y -= 0.01;
+        });     
+    });
+    
+    
     return scene;
 }
 //end setup engine stuff
